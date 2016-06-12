@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.litian.web.blog.mapper.MemberMapper">
+
+  <sql id="columns">
+    ID,
+    NAME,
+    PASSWORD,
+    MAIL,
+    PHONE,
+    STATUS
+  </sql>
+
+  <!-- 根据ID查询用户信息 -->
+  <select id="queryMemberById" resultType="com.litian.web.blog.entity.MemberBean">
+    SELECT
+    <include refid="columns" />
+    FROM
+    MEMBER
+    WHERE
+    ID = #{0}
+  </select>
+
+</mapper>
