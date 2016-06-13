@@ -22,6 +22,7 @@
       <root url="jar://$PROJECT_DIR$/WebRoot/WEB-INF/lib/spring-tx-3.2.5.RELEASE.jar!/" />
       <root url="jar://$PROJECT_DIR$/WebRoot/WEB-INF/lib/spring-web-3.2.5.RELEASE.jar!/" />
       <root url="jar://$PROJECT_DIR$/WebRoot/WEB-INF/lib/spring-webmvc-3.2.5.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/WebRoot/WEB-INF/lib/servlet-api.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

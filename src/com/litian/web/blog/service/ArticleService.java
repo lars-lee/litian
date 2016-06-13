@@ -1,14 +1,14 @@
-package com.litian.web.blog.service.impl;
+package com.litian.web.blog.service;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.litian.web.blog.service.IArticleService;
+import com.litian.web.blog.service.i.IArticleService;
 
 @Service
-public class ArticleServiceImpl implements IArticleService {
+public class ArticleService implements IArticleService {
 
 	@Override
 	public List<String> getArticles() {

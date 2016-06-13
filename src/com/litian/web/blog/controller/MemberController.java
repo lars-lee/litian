@@ -5,7 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.litian.web.blog.service.IMemberService;
+import com.litian.web.blog.service.i.IMemberService;
 
 @Controller
 public class MemberController {

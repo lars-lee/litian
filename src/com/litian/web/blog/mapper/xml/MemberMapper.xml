@@ -13,7 +13,7 @@
   </sql>
 
   <!-- 根据ID查询用户信息 -->
-  <select id="queryMemberById" resultType="com.litian.web.blog.entity.MemberBean">
+  <select id="queryMemberById" resultType="MemberBean">
     SELECT
     <include refid="columns" />
     FROM
