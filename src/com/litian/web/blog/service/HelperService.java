@@ -16,6 +16,18 @@ public class HelperService implements IHelperService {
     @Autowired
     private PwdMapper pwdMapper;
 
+    @Override
+    public PwdBean insert(PwdBean pwdBean) {
+        pwdMapper.insert(pwdBean);
+        return pwdBean;
+    }
+
+    @Override
+    public int update(PwdBean pwdBean) {
+        return pwdMapper.update(pwdBean);
+    }
+
+    @Override
     public List<PwdBean> getPwds() {
         return pwdMapper.queryPwds();
     }

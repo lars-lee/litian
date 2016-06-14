@@ -9,5 +9,9 @@ import java.util.List;
  */
 public interface IHelperService {
 
+    PwdBean insert(PwdBean pwdBean);
+
+    int update(PwdBean pwdBean);
+
     List<PwdBean> getPwds();
 }

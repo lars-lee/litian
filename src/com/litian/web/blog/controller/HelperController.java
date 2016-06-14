@@ -27,15 +27,26 @@ public class HelperController {
         ModelAndView mav = new ModelAndView();
         try {
             List<PwdBean> beans = helperService.getPwds();
-            OutputStream os = response.getOutputStream();
             if (beans != null && !beans.isEmpty()) {
-                os.write(beans.toString().getBytes());
                 for (PwdBean bean : beans) {
                     System.out.println("bean = " + bean);
                 }
-            }else{
-                os.write("no results!".getBytes());
             }
+
+
+            String str = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
+                    "<service>\n" +
+                    " <SYS_HEAD>\n" +
+                    "  <array>\n" +
+                    "   <Ret>\n" +
+                    "    <ReturnCode>000000</ReturnCode>\n" +
+                    "    <ReturnMsg>交易成功</ReturnMsg>\n" +
+                    "   </Ret>\n" +
+                    "  </array>\n" +
+                    " </SYS_HEAD>\n" +
+                    "</service>";
+            OutputStream os = response.getOutputStream();
+            os.write(str.getBytes());
             os.flush();
             os.close();
         } catch (IOException e) {

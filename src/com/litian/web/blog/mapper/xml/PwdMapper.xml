@@ -3,6 +3,35 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.litian.web.blog.mapper.PwdMapper">
 
+    <insert id="insert" parameterType="PwdBean">
+        <selectKey order="BEFORE" keyProperty="id">
+            SELECT PWD_SEQ_ID.NEXTVAL FROM DUAL
+        </selectKey>
+        insert into PWD (ID, NAME, WEBSITE,
+        WID, USERNAME, MAIL,
+        PHONE, ENPWD, ENPAYPWD,
+        PWD, PAYPWD)
+        values (#{id,jdbcType=DECIMAL}, #{name,jdbcType=VARCHAR}, #{website,jdbcType=VARCHAR},
+        #{wid,jdbcType=DECIMAL}, #{username,jdbcType=VARCHAR}, #{mail,jdbcType=VARCHAR},
+        #{phone,jdbcType=DECIMAL}, #{enPwd,jdbcType=VARCHAR}, #{enPayPwd,jdbcType=VARCHAR},
+        #{pwd,jdbcType=VARCHAR}, #{payPwd,jdbcType=VARCHAR})
+    </insert>
+
+    <update id="update" parameterType="PwdBean">
+    update PWD
+    set
+      NAME = #{name,jdbcType=VARCHAR},
+      WEBSITE = #{website,jdbcType=VARCHAR},
+      WID = #{wid,jdbcType=DECIMAL},
+      USERNAME = #{username,jdbcType=VARCHAR},
+      MAIL = #{mail,jdbcType=VARCHAR},
+      PHONE = #{phone,jdbcType=DECIMAL},
+      ENPWD = #{enPwd,jdbcType=VARCHAR},
+      ENPAYPWD = #{enPayPwd,jdbcType=VARCHAR},
+      PWD = #{pwd,jdbcType=VARCHAR},
+      PAYPWD = #{payPwd,jdbcType=VARCHAR}
+      WHERE ID = #{id,jdbcType=DECIMAL}
+    </update>
     <!-- 根据ID查询用户信息 -->
     <select id="queryPwds" resultType="PwdBean">
         SELECT
