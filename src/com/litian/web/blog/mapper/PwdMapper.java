@@ -1,6 +1,5 @@
 package com.litian.web.blog.mapper;
 
-import com.litian.generator.entity.Pwd;
 import com.litian.web.blog.entity.PwdBean;
 
 import java.util.List;

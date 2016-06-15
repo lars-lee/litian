@@ -17,13 +17,13 @@ public class HelperService implements IHelperService {
     private PwdMapper pwdMapper;
 
     @Override
-    public PwdBean insert(PwdBean pwdBean) {
+    public PwdBean addPwd(PwdBean pwdBean) {
         pwdMapper.insert(pwdBean);
         return pwdBean;
     }
 
     @Override
-    public int update(PwdBean pwdBean) {
+    public int updatePwd(PwdBean pwdBean) {
         return pwdMapper.update(pwdBean);
     }
 

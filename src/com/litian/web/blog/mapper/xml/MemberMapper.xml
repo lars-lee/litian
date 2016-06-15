@@ -1,9 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.litian.web.blog.mapper.MemberMapper">
 
-  <sql id="columns">
+    <insert id="insert">
+        <selectKey order="BEFORE" keyProperty="id" resultType="Long">
+            SELECT MEMBER_SEQ_ID.NEXTVAL FROM DUAL
+        </selectKey>
+        insert into MEMBER (ID, NAME, PASSWORD, MAIL, PHONE, STATUS)
+        values (#{id,jdbcType=DECIMAL}, #{name,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
+        #{mail,jdbcType=VARCHAR}, #{phone,jdbcType=DECIMAL}, #{status,jdbcType=DECIMAL}
+        )
+    </insert>
+    <!-- 根据ID查询用户信息 -->
+    <select id="queryMemberById" resultType="MemberBean">
+        SELECT
+        <include refid="columns"/>
+        FROM
+        MEMBER
+        WHERE
+        ID = #{0}
+    </select>
+    <select id="queryMemberByPhone" resultType="MemberBean">
+        SELECT
+        <include refid="columns"/>
+        FROM
+        MEMBER
+        WHERE
+        phone = #{0}
+    </select>
+    <select id="queryMemberByMail" resultType="MemberBean">
+        SELECT
+        <include refid="columns"/>
+        FROM
+        MEMBER
+        WHERE
+        mail = #{0}
+    </select>
+    <select id="queryMemberByName" resultType="MemberBean">
+        SELECT
+        <include refid="columns"/>
+        FROM
+        MEMBER
+        WHERE
+        name = #{0}
+    </select>
+    <sql id="columns">
     ID,
     NAME,
     PASSWORD,
@@ -11,15 +53,4 @@
     PHONE,
     STATUS
   </sql>
-
-  <!-- 根据ID查询用户信息 -->
-  <select id="queryMemberById" resultType="MemberBean">
-    SELECT
-    <include refid="columns" />
-    FROM
-    MEMBER
-    WHERE
-    ID = #{0}
-  </select>
-
 </mapper>

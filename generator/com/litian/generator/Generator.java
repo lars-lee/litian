@@ -1,6 +1,7 @@
 package com.litian.generator;
 
 /**
+ * 自动生成mybatis接口、实体等
  * Created by litian on 2016/6/14.
  */
 
@@ -29,8 +30,7 @@ public class Generator {
             DefaultShellCallback callback = new DefaultShellCallback(overwrite);
             MyBatisGenerator myBatisGenerator;
             try {
-                myBatisGenerator = new MyBatisGenerator(config, callback,
-                        warnings);
+                myBatisGenerator = new MyBatisGenerator(config, callback, warnings);
                 myBatisGenerator.generate(null);
 
                 //打印结果

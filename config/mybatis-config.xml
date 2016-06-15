@@ -52,6 +52,8 @@
 			<tx:method name="list*" propagation="SUPPORTS" read-only="true" />
 
 			<tx:method name="create*" propagation="REQUIRED" />
+			<tx:method name="insert*" propagation="REQUIRED" />
+			<tx:method name="add*" propagation="REQUIRED" />
 			<tx:method name="save*" propagation="REQUIRED" />
 			<tx:method name="modify*" propagation="REQUIRED" />
 			<tx:method name="update*" propagation="REQUIRED" />

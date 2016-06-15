@@ -29,7 +29,7 @@ public class HelperController {
             List<PwdBean> beans = helperService.getPwds();
             if (beans != null && !beans.isEmpty()) {
                 for (PwdBean bean : beans) {
-                    System.out.println("bean = " + bean);
+                    System.out.println("mvc : bean = " + bean);
                 }
             }
 
