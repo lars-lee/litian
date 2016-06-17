@@ -1,10 +1,14 @@
 package com.litian.web.blog.service.i;
 
+import com.litian.web.blog.entity.ArticleBean;
+
 import java.util.List;
 
 public interface IArticleService {
 
-	List<String> getArticles();
-	
-	String getArticleById(Long id);
+	ArticleBean addArticle(ArticleBean articleBean);
+
+	ArticleBean getArticleById(Long id);
+
+	List<ArticleBean> getArticles(int index, int size);
 }

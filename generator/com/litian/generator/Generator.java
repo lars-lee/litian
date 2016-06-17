@@ -46,5 +46,6 @@ public class Generator {
         } catch (XMLParserException e) {
             e.printStackTrace();
         }
+        System.out.println("执行完毕！");
     }
 }

@@ -3,7 +3,10 @@ package com.litian.web.blog.controller;
 import com.litian.utils.MD5;
 import com.litian.utils.RC4;
 import com.litian.web.blog.constant.WebConstant;
+import com.litian.web.blog.entity.ArticleBean;
 import com.litian.web.blog.entity.MemberBean;
+import com.litian.web.blog.service.i.IArticleService;
+import com.litian.web.blog.util.ByteArrayToString;
 import org.apache.ibatis.jdbc.Null;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,12 +16,15 @@ import org.springframework.web.servlet.ModelAndView;
 import com.litian.web.blog.service.i.IMemberService;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @Controller
 public class MemberController {
 
     @Autowired
     private IMemberService memberService;
+    @Autowired
+    private IArticleService articleService;
 
     @RequestMapping("/login")
     public String login(HttpServletRequest request) {
@@ -46,18 +52,21 @@ public class MemberController {
         MemberBean member;
         if (request.getSession() != null) {
             member = (MemberBean) request.getSession().getAttribute("member");
-            System.out.println("member = " + member);
         } else {
             member = null;
         }
         if (member instanceof MemberBean) {
             mav = new ModelAndView("member/index");
+            List<ArticleBean> articles = articleService.getArticles(1, 10);
+            mav.addObject("articles", articles);
         } else {
             String username = request.getParameter("username");
             String password = request.getParameter("password");
             member = memberService.getMemberByUsername(username);
             if (member != null && verify(username, password, member.getPassword())) {
                 mav = new ModelAndView("member/index");
+                List<ArticleBean> articles = articleService.getArticles(1, 10);
+                mav.addObject("articles", articles);
                 request.getSession().setAttribute("member", member);
             } else {
                 mav = new ModelAndView("member/signin");

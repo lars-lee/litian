@@ -11,10 +11,12 @@
     <typeAliases>
         <typeAlias alias="MemberBean" type="com.litian.web.blog.entity.MemberBean"/>
         <typeAlias alias="PwdBean" type="com.litian.web.blog.entity.PwdBean"/>
+        <typeAlias alias="ArticleBean" type="com.litian.web.blog.entity.ArticleBean"/>
     </typeAliases>
     <mappers>
         <mapper resource="com/litian/web/blog/mapper/xml/MemberMapper.xml"/>
         <mapper resource="com/litian/web/blog/mapper/xml/PwdMapper.xml"/>
+        <mapper resource="com/litian/web/blog/mapper/xml/ArticleMapper.xml"/>
     </mappers>
 
 </configuration>

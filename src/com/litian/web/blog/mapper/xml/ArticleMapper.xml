@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.litian.web.blog.mapper.ArticleMapper">
+
+    <insert id="insert" parameterType="ArticleBean">
+        <selectKey order="BEFORE" keyProperty="id" resultType="Long">
+            SELECT ARTICLE_SEQ_ID.NEXTVAL FROM dual
+        </selectKey>
+        insert into ARTICLE (ID, TITLE, MID,
+        CDATE, UDATE, CONTENT)
+        values (#{id,jdbcType=DECIMAL}, #{title,jdbcType=VARCHAR}, #{mid,jdbcType=DECIMAL},
+        #{cdate,jdbcType=TIMESTAMP}, #{udate,jdbcType=TIMESTAMP}, #{content,jdbcType=BLOB})
+    </insert>
+
+    <select id="queryArticleById" resultType="ArticleBean">
+        SELECT
+        <include refid="columns"/>
+        FROM ARTICLE
+        WHERE ID = #{0, jdbcType = DECIMAL}
+    </select>
+    <select id="queryArticles" resultType="ArticleBean">
+        SELECT
+        <include refid="columns"/>
+        FROM (
+        SELECT<include refid="columns"/>, ROWNUM ROW_NUM FROM(
+        SELECT
+        <include refid="columns"/>
+        FROM ARTICLE ORDER BY ID DESC
+        )
+        <where>
+            <if test="end != null">ROWNUM &lt;= #{end}</if>
+        </where>
+        )
+        <where>
+            <if test="start != null">ROW_NUM &gt; #{start}</if>
+        </where>
+    </select>
+    <sql id="columns">
+        ID,
+        TITLE,
+        MID,
+        CDATE,
+        UDATE,
+        CONTENT
+    </sql>
+
+</mapper>
