@@ -2,21 +2,21 @@ package com.litian.web.blog.controller;
 
 import com.litian.utils.MD5;
 import com.litian.utils.RC4;
-import com.litian.web.blog.constant.WebConstant;
 import com.litian.web.blog.entity.ArticleBean;
 import com.litian.web.blog.entity.MemberBean;
 import com.litian.web.blog.service.i.IArticleService;
-import com.litian.web.blog.util.ByteArrayToString;
-import org.apache.ibatis.jdbc.Null;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.litian.web.blog.service.i.IMemberService;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class MemberController {
@@ -37,7 +37,16 @@ public class MemberController {
         if (member instanceof MemberBean) {
             return "member/index";
         }
-        return "member/signin";
+        return "member/login";
+    }
+
+    @RequestMapping("/signin")
+    @ResponseBody
+    public Object signin(String username, String password) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        System.out.println("\"aaaaaaaaa\" = " + "aaaaaaaaa");
+        map.put("status", true);
+        return map;
     }
 
     @RequestMapping("/register")
@@ -69,7 +78,7 @@ public class MemberController {
                 mav.addObject("articles", articles);
                 request.getSession().setAttribute("member", member);
             } else {
-                mav = new ModelAndView("member/signin");
+                mav = new ModelAndView("member/login");
             }
         }
         return mav;

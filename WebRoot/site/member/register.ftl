@@ -12,6 +12,8 @@
     <link href="../../css/common/bootstrap/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="../../css/member/signin.css">
 
+    <script src="../../js/common/jquery/jquery.min.js"></script>
+    <script src="../../js/member/register.js"
 </head>
 
 <body>

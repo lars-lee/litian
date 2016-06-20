@@ -37,6 +37,8 @@
 
 </div> <!-- /container -->
 
+<script src="../../js/common/jquery/jquery.min.js"></script>
+<script src="../../js/common/WebConstant.js"></script>
 <script src="../../js/member/login.js"></script>
 </body>
 </html>
