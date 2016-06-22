@@ -2,7 +2,7 @@
  * Created by litian on 2016/6/15.
  */
 $(function () {
-    $(".btn").click(function () {
+    $("input[type=submit]").click(function () {
         var username = $.trim($("#username").val());
         var password = $.trim($("#password").val());
         if (!username || "" == username) {

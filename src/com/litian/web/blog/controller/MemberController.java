@@ -2,6 +2,7 @@ package com.litian.web.blog.controller;
 
 import com.litian.utils.MD5;
 import com.litian.utils.RC4;
+import com.litian.web.blog.constant.WebConstant;
 import com.litian.web.blog.entity.ArticleBean;
 import com.litian.web.blog.entity.MemberBean;
 import com.litian.web.blog.service.i.IArticleService;
@@ -30,7 +31,7 @@ public class MemberController {
     public String login(HttpServletRequest request) {
         MemberBean member;
         if (request.getSession() != null) {
-            member = (MemberBean) request.getSession().getAttribute("member");
+            member = (MemberBean) request.getSession().getAttribute(WebConstant.SESSION_MEMBER);
         } else {
             member = null;
         }
@@ -40,11 +41,17 @@ public class MemberController {
         return "member/login";
     }
 
+    @RequestMapping("/logout")
+    public String logout(HttpServletRequest request){
+        if (request.getSession() != null) {
+            request.getSession().removeAttribute(WebConstant.SESSION_MEMBER);
+        }
+        return "member/login";
+    }
     @RequestMapping("/signin")
     @ResponseBody
     public Object signin(String username, String password) {
         Map<String, Object> map = new HashMap<String, Object>();
-        System.out.println("\"aaaaaaaaa\" = " + "aaaaaaaaa");
         map.put("status", true);
         return map;
     }
@@ -60,7 +67,7 @@ public class MemberController {
         ModelAndView mav;
         MemberBean member;
         if (request.getSession() != null) {
-            member = (MemberBean) request.getSession().getAttribute("member");
+            member = (MemberBean) request.getSession().getAttribute(WebConstant.SESSION_MEMBER);
         } else {
             member = null;
         }
@@ -76,7 +83,7 @@ public class MemberController {
                 mav = new ModelAndView("member/index");
                 List<ArticleBean> articles = articleService.getArticles(1, 10);
                 mav.addObject("articles", articles);
-                request.getSession().setAttribute("member", member);
+                request.getSession().setAttribute(WebConstant.SESSION_MEMBER, member);
             } else {
                 mav = new ModelAndView("member/login");
             }

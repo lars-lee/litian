@@ -8,4 +8,6 @@ public class WebConstant {
     public static String DEFAULT_CHARSET = "UTF-8";
     public static String REGEX_MOBILE = "((13[0-9])|(15[^4,\\D])|(147)|(154)|(18[0,2-3,5-9]))\\d{8}";
     public static String REGEX_MAIL = "\\w+@(\\w+.)+[a-z]{2,3}";
+
+    public static String SESSION_MEMBER = "member";
 }
