@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<#include "/site/common/common.ftl"/>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>首页</title>
-    <link href="../../css/common/bootstrap/bootstrap.min.css" rel="stylesheet">
-    <link href="../../css/article/blog.css" rel="stylesheet">
+    <link href="${contextPath}/css/common/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link href="${contextPath}/css/article/blog.css" rel="stylesheet">
 </head>
 
 <body>
@@ -14,7 +15,7 @@
 <div class="blog-masthead">
     <div class="container">
         <nav class="blog-nav">
-            <a class="blog-nav-item active" href="/index">首页</a>
+            <a class="blog-nav-item active" href="${contextPath}/index">首页</a>
             <a class="blog-nav-item" href="#">导航1</a>
             <a class="blog-nav-item" href="#">导航2</a>
             <a class="blog-nav-item" href="#">导航3</a>
@@ -34,7 +35,7 @@
         <#list articles as article>
             <div class="blog-post">
                 <h2 class="blog-post-title">
-                    <a class="blog-post-title" href="/article/detail/${article.id}">${article.title?default("")?html}</a>
+                    <a class="blog-post-title" href="${contextPath}/article/detail/${article.id}">${article.title?default("")?html}</a>
                 </h2>
                 <p class="blog-post-meta">${(article.cdate?string("yyyy-MM-dd"))!}</p>
                 <#assign tempString = "" />
@@ -97,7 +98,7 @@
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
-<script src="../../js/common/jquery/jquery.min.js"></script>
-<script src="../../js/common/bootstrap/bootstrap.min.js"></script>
+<script src="${contextPath}/js/common/jquery/jquery.min.js"></script>
+<script src="${contextPath}/js/common/bootstrap/bootstrap.min.js"></script>
 </body>
 </html>

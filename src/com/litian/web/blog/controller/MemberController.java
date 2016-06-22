@@ -35,7 +35,7 @@ public class MemberController {
             member = null;
         }
         if (member instanceof MemberBean) {
-            return "member/index";
+            return "redirect:/index";
         }
         return "member/login";
     }

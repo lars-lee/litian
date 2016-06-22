@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+  <#include "/site/common/common.ftl"/>
     <title>注册成功！</title>
 	
     <meta name="keywords" content="keyword1,keyword2,keyword3">
@@ -13,6 +14,6 @@
   
   <body>
     注册成功！
-    <a href="login">点击登录</a>
+    <a href="${contextPath}/login">点击登录</a>
   </body>
 </html>

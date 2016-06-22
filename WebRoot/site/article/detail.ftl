@@ -1,17 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<#include "/site/common/common.ftl"/>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>文章详情</title>
-    <link href="../../css/common/bootstrap/bootstrap.min.css" rel="stylesheet">
-    <link href="../../css/article/blog.css" rel="stylesheet">
+    <link href="${contextPath}/css/common/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link href="${contextPath}/css/article/blog.css" rel="stylesheet">
 
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
 </head>
 
 <body>
@@ -19,7 +16,7 @@
 <div class="blog-masthead">
     <div class="container">
         <nav class="blog-nav">
-            <a class="blog-nav-item active" href="/index">首页</a>
+            <a class="blog-nav-item active" href="${contextPath}/index">首页</a>
             <a class="blog-nav-item" href="#">导航1</a>
             <a class="blog-nav-item" href="#">导航2</a>
             <a class="blog-nav-item" href="#">导航3</a>
@@ -95,7 +92,7 @@
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
-<script src="../../js/common/jquery/jquery.min.js"></script>
-<script src="../../js/common/bootstrap/bootstrap.min.js"></script>
+<script src="${contextPath}/js/common/jquery/jquery.min.js"></script>
+<script src="${contextPath}/js/common/bootstrap/bootstrap.min.js"></script>
 </body>
 </html>
