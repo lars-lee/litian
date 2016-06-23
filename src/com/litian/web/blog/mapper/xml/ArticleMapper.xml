@@ -26,7 +26,11 @@
         SELECT<include refid="columns"/>, ROWNUM ROW_NUM FROM(
         SELECT
         <include refid="columns"/>
-        FROM ARTICLE ORDER BY ID DESC
+        FROM ARTICLE
+        <where>
+            <if test="mid != null">MID = #{mid}</if>
+        </where>
+        ORDER BY ID DESC
         )
         <where>
             <if test="end != null">ROWNUM &lt;= #{end}</if>

@@ -1,10 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<#include "/site/common/common.ftl"/>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<#include "/site/common/headinfo.ftl"/>
     <title>文章详情</title>
     <link href="${contextPath}/css/common/bootstrap/bootstrap.min.css" rel="stylesheet">
     <link href="${contextPath}/css/article/blog.css" rel="stylesheet">
@@ -13,17 +10,7 @@
 
 <body>
 
-<div class="blog-masthead">
-    <div class="container">
-        <nav class="blog-nav">
-            <a class="blog-nav-item active" href="${contextPath}/index">首页</a>
-            <a class="blog-nav-item" href="#">导航1</a>
-            <a class="blog-nav-item" href="#">导航2</a>
-            <a class="blog-nav-item" href="#">导航3</a>
-            <a class="blog-nav-item" href="#">导航4</a>
-        </nav>
-    </div>
-</div>
+<#include "/site/common/nav.ftl"/>
 
 <div class="container">
     <div class="blog-header">
@@ -36,6 +23,9 @@
         <#if article??&&article?has_content>
             <div class="blog-post">
                 <h2 class="blog-post-title">${article.title?if_exists}</h2>
+                <#if member??&&member.id==article.mid>
+                    <span id="edit">编辑</span>
+                </#if>
                 <p class="blog-post-meta">
                 ${(article.udate?string("MM dd, yyyy"))!"07 07, 1937"}
                 </p>
@@ -81,17 +71,8 @@
     </div><!-- /.row -->
 </div><!-- /.container -->
 
-<footer class="blog-footer">
-    <p>作者：<a href="http://weibo.com/525920310" target="_blank">@愤怒的李纯洁啊</a></p>
-    <p>
-        <a href="#">返回首页</a>
-    </p>
-</footer>
+<#include "/site/common/footer.ftl"/>
 
-
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
 <script src="${contextPath}/js/common/jquery/jquery.min.js"></script>
 <script src="${contextPath}/js/common/bootstrap/bootstrap.min.js"></script>
 </body>

@@ -31,7 +31,7 @@ public class DataTest {
             e.printStackTrace();
         } finally {
         }
-//        ApplicationContext ac = new ClassPathXmlApplicationContext("applicationContext.xml", "mybatis-config.xml");
+//        ApplicationContext ac = new ClassPathXmlApplicationContext("springmvc-servlet.xml", "mybatis-config.xml");
 //        IArticleService articleService = (IArticleService) ac.getBean("articleService");
         /*ArticleBean articleBean = new ArticleBean();
         articleBean.setTitle("第二篇文章");

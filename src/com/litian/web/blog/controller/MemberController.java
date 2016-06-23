@@ -8,6 +8,7 @@ import com.litian.web.blog.entity.MemberBean;
 import com.litian.web.blog.service.i.IArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -27,6 +28,58 @@ public class MemberController {
     @Autowired
     private IArticleService articleService;
 
+    /**
+     * 进入注册页面
+     * @param request
+     * @return
+     */
+    @RequestMapping("/register")
+    public ModelAndView register(HttpServletRequest request) {
+        ModelAndView mav = new ModelAndView("member/register");
+        MemberBean member;
+        if (request.getSession() != null) {
+            member = (MemberBean) request.getSession().getAttribute(WebConstant.SESSION_MEMBER);
+        } else {
+            member = null;
+        }
+        if (member instanceof MemberBean) {
+            mav = new ModelAndView("member/index");
+        }
+        return mav;
+    }
+
+    /**
+     * 注册并返回结果
+     * TODO 注册页面添加ajax验证功能，提升用户体验
+     * @param request
+     * @return
+     */
+    @RequestMapping("/registerResult")
+    public ModelAndView registerResult(HttpServletRequest request) {
+        ModelAndView mav;
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        if (username != null && password != null && !username.isEmpty() && !password.isEmpty()) {
+            // TODO 验证是否已经注册
+            // TODO 扩展支持邮箱或者手机号或者昵称注册
+            MemberBean memberBean = new MemberBean();
+            memberBean.setMail(username);
+            memberBean.setPassword(encrypt(username, password));
+            memberBean = memberService.addMember(memberBean);
+            if (memberBean.getId() != null) {
+                mav = new ModelAndView("member/register_success");
+                return mav;
+            }
+        }
+        mav = new ModelAndView("member/register");
+        return mav;
+    }
+
+    /**
+     * 进入登录页面
+     * @param request
+     * @return
+     */
     @RequestMapping("/login")
     public String login(HttpServletRequest request) {
         MemberBean member;
@@ -41,30 +94,29 @@ public class MemberController {
         return "member/login";
     }
 
+    /**
+     * 退出登录
+     * @param request
+     * @return
+     */
     @RequestMapping("/logout")
-    public String logout(HttpServletRequest request){
+    public String logout(HttpServletRequest request) {
         if (request.getSession() != null) {
             request.getSession().removeAttribute(WebConstant.SESSION_MEMBER);
         }
         return "member/login";
     }
+
+    /**
+     * ajax登录验证
+     * @param request
+     * @return
+     */
     @RequestMapping("/signin")
     @ResponseBody
-    public Object signin(String username, String password) {
+    public Object signin(HttpServletRequest request) {
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("status", true);
-        return map;
-    }
-
-    @RequestMapping("/register")
-    public ModelAndView register() {
-        ModelAndView mav = new ModelAndView("member/register");
-        return mav;
-    }
-
-    @RequestMapping("/index")
-    public ModelAndView index(HttpServletRequest request) {
-        ModelAndView mav;
         MemberBean member;
         if (request.getSession() != null) {
             member = (MemberBean) request.getSession().getAttribute(WebConstant.SESSION_MEMBER);
@@ -72,42 +124,28 @@ public class MemberController {
             member = null;
         }
         if (member instanceof MemberBean) {
-            mav = new ModelAndView("member/index");
-            List<ArticleBean> articles = articleService.getArticles(1, 10);
-            mav.addObject("articles", articles);
+            return "you have logged in!<a href = '" + request.getContextPath() + "/index'>back to index</a>";
         } else {
             String username = request.getParameter("username");
             String password = request.getParameter("password");
             member = memberService.getMemberByUsername(username);
             if (member != null && verify(username, password, member.getPassword())) {
-                mav = new ModelAndView("member/index");
-                List<ArticleBean> articles = articleService.getArticles(1, 10);
-                mav.addObject("articles", articles);
                 request.getSession().setAttribute(WebConstant.SESSION_MEMBER, member);
             } else {
-                mav = new ModelAndView("member/login");
+                map.put("status", false);
+                map.put("msg", "用户名或密码错误!");
             }
         }
-        return mav;
+        return map;
     }
 
-    @RequestMapping("/registerResult")
-    public ModelAndView registerResult(HttpServletRequest request) {
-        ModelAndView mav;
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-        if (username != null && password != null && !username.isEmpty() && !password.isEmpty()) {
-            MemberBean memberBean = new MemberBean();
-            memberBean.setMail(username);
-            memberBean.setPassword(encrypt(username, password));
-            memberBean = memberService.addMember(memberBean);
-            if (memberBean.getId() != null) {
-                mav = new ModelAndView("member/register_success");
-                return mav;
-            }
-        }
-        mav = new ModelAndView("member/register");
-        return mav;
+    /**
+     * 进入首页
+     * @return
+     */
+    @RequestMapping("/index")
+    public String index(){
+        return "member/index";
     }
 
     private boolean verify(String username, String password, String enPassword) {

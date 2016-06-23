@@ -1,10 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<#include "/site/common/common.ftl"/>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<#include "/site/common/headinfo.ftl"/>
     <title>注册页面</title>
     <meta name="keywords" content="keyword1,keyword2,keyword3">
     <meta name="description" content="this is my page">

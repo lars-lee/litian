@@ -37,4 +37,15 @@ public class ArticleService implements IArticleService {
         map.put("end", end);
         return articleMapper.queryArticles(map);
     }
+
+    @Override
+    public List<ArticleBean> getArticlesById(Long mid, int index, int size) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        int end = index * size;
+        int start = end - size;
+        map.put("start", start);
+        map.put("end", end);
+        map.put("mid", mid);
+        return articleMapper.queryArticles(map);
+    }
 }

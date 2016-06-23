@@ -22,6 +22,15 @@ public class HelperController {
     @Autowired
     private IHelperService helperService;
 
+
+    @RequestMapping("/helper/pwd")
+    public ModelAndView pwdHelper(HttpServletRequest request) {
+        ModelAndView mav = new ModelAndView("utils/pwd");
+        List<PwdBean> pwdBeans = helperService.getPwds();
+        mav.addObject("pwdBeans", pwdBeans);
+        return mav;
+    }
+
     @RequestMapping("/helper")
     public ModelAndView helper(HttpServletRequest request, HttpServletResponse response) {
         ModelAndView mav = new ModelAndView();

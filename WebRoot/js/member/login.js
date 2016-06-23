@@ -20,8 +20,13 @@ $(function () {
             $("#password").focus();
             return false;
         }
-        $.post("/signin", {username: username, password: password}, function (data) {
-            alert(data.status);
+        $.post(contextPath + "/signin", {username: username, password: password}, function (data) {
+            if (data.status)
+                window.location.href = contextPath + "/index";
+            else {
+                $("#username").focus();
+                alert(data.msg);
+            }
         });
     });
 });
