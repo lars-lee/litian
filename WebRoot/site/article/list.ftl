@@ -26,11 +26,7 @@
                        href="${contextPath}/article/detail/${article.id}">${article.title?default("")?html}</a>
                 </h2>
                 <p class="blog-post-meta">${(article.cdate?string("yyyy-MM-dd"))!}</p>
-                <#assign tempString = "" />
-                <#list article.content as lis>
-                    <#assign tempString += (lis+",") />
-                </#list>
-                <p>${byteArray2String(tempString)?if_exists}</p>
+                <p>${article.fastInfo}</p>
                 <hr>
             </div>
         </#list>

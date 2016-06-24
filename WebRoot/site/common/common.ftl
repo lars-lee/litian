@@ -1,1 +1,1 @@
-<#assign contextPath="/litian"/>
+<#assign contextPath=""/>

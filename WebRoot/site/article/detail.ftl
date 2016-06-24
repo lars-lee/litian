@@ -3,9 +3,7 @@
 <head>
 <#include "/site/common/headinfo.ftl"/>
     <title>文章详情</title>
-    <link href="${contextPath}/css/common/bootstrap/bootstrap.min.css" rel="stylesheet">
     <link href="${contextPath}/css/article/blog.css" rel="stylesheet">
-
 </head>
 
 <body>
@@ -73,7 +71,5 @@
 
 <#include "/site/common/footer.ftl"/>
 
-<script src="${contextPath}/js/common/jquery/jquery.min.js"></script>
-<script src="${contextPath}/js/common/bootstrap/bootstrap.min.js"></script>
 </body>
 </html>

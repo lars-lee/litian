@@ -17,11 +17,13 @@ public class ArticleBean {
 
     private byte[] content;
 
+    private String fastInfo;
+
     private Long mid;
 
-    private Date cdate;
+    private Date cDate;
 
-    private Date udate;
+    private Date uDate;
 
     public Long getId() {
         return id;
@@ -47,6 +49,14 @@ public class ArticleBean {
         this.content = content;
     }
 
+    public String getFastInfo() {
+        return fastInfo;
+    }
+
+    public void setFastInfo(String fastInfo) {
+        this.fastInfo = fastInfo;
+    }
+
     public Long getMid() {
         return mid;
     }
@@ -55,49 +65,40 @@ public class ArticleBean {
         this.mid = mid;
     }
 
-    public Date getCdate() {
-        return cdate;
+    public Date getcDate() {
+        return cDate;
     }
 
-    public void setCdate(Date cdate) {
-        this.cdate = cdate;
+    public void setcDate(Date cDate) {
+        this.cDate = cDate;
     }
 
-    public Date getUdate() {
-        return udate;
+    public Date getuDate() {
+        return uDate;
     }
 
-    public void setUdate(Date udate) {
-        this.udate = udate;
+    public void setuDate(Date uDate) {
+        this.uDate = uDate;
     }
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("ArticleBean [id=");
-        sb.append(id);
-        sb.append(", title=");
-        sb.append(title);
-        sb.append(", orign content=");
-        sb.append(Arrays.toString(content) + "\n");
+        final StringBuffer sb = new StringBuffer("ArticleBean{");
+        sb.append("id=").append(id);
+        sb.append(", title='").append(title).append('\'');
         sb.append(", content=");
-        if (content == null)
-            sb.append("null");
+        if (content == null) sb.append("null");
         else {
-            try {
-                sb.append(new String(content, WebConstant.DEFAULT_CHARSET));
-            } catch (UnsupportedEncodingException e) {
-                e.printStackTrace();
-            }
+            sb.append('[');
+            for (int i = 0; i < content.length; ++i)
+                sb.append(i == 0 ? "" : ", ").append(content[i]);
+            sb.append(']');
         }
-        sb.append(", mid=");
-        sb.append(mid);
-        sb.append(", cdate=");
-        sb.append(cdate);
-        sb.append(", udate=");
-        sb.append(udate);
-        sb.append("]");
+        sb.append(", fastInfo='").append(fastInfo).append('\'');
+        sb.append(", mid=").append(mid);
+        sb.append(", cDate=").append(cDate);
+        sb.append(", uDate=").append(uDate);
+        sb.append('}');
         return sb.toString();
     }
-
 }

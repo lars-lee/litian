@@ -1,1 +1,1 @@
-<meta http-equiv="refresh" content="0;url=/litian/index" />
+<meta http-equiv="refresh" content="0;url=/index" />

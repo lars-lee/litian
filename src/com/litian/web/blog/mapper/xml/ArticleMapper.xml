@@ -8,18 +8,19 @@
             SELECT ARTICLE_SEQ_ID.NEXTVAL FROM dual
         </selectKey>
         insert into ARTICLE (ID, TITLE, MID,
-        CDATE, UDATE, CONTENT)
+        CDATE, UDATE, CONTENT,FAST_INFO)
         values (#{id,jdbcType=DECIMAL}, #{title,jdbcType=VARCHAR}, #{mid,jdbcType=DECIMAL},
-        #{cdate,jdbcType=TIMESTAMP}, #{udate,jdbcType=TIMESTAMP}, #{content,jdbcType=BLOB})
+        #{cDate,jdbcType=TIMESTAMP}, #{uDate,jdbcType=TIMESTAMP}, #{content,jdbcType=BLOB},
+        #{fastInfo, jdbcType=VARCHAR})
     </insert>
 
-    <select id="queryArticleById" resultType="ArticleBean">
+    <select id="queryArticleById" resultMap="rs_ArticleBean">
         SELECT
         <include refid="columns"/>
         FROM ARTICLE
         WHERE ID = #{0, jdbcType = DECIMAL}
     </select>
-    <select id="queryArticles" resultType="ArticleBean">
+    <select id="queryArticles" resultMap="rs_ArticleBean">
         SELECT
         <include refid="columns"/>
         FROM (
@@ -46,7 +47,17 @@
         MID,
         CDATE,
         UDATE,
-        CONTENT
+        CONTENT,
+        FAST_INFO
     </sql>
 
+    <resultMap id="rs_ArticleBean" type="ArticleBean">
+        <id column="ID" property="id"/>
+        <result column="TITLE" property="title"/>
+        <result column="MID" property="mid"/>
+        <result column="CDATE" property="cDate"/>
+        <result column="UDATE" property="uDate"/>
+        <result column="CONTENT" property="content"/>
+        <result column="FAST_INFO" property="fastInfo"/>
+    </resultMap>
 </mapper>
