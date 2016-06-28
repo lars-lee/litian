@@ -29,6 +29,7 @@
       <root url="jar://$PROJECT_DIR$/WebRoot/WEB-INF/lib/jackson-core-lgpl-1.9.7.jar!/" />
       <root url="jar://$PROJECT_DIR$/WebRoot/WEB-INF/lib/jackson-mapper-asl-1.9.7.jar!/" />
       <root url="jar://$PROJECT_DIR$/WebRoot/WEB-INF/lib/jackson-mapper-lgpl-1.9.7.jar!/" />
+      <root url="jar://$PROJECT_DIR$/WebRoot/WEB-INF/lib/log4j-1.2.14.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

@@ -3,21 +3,17 @@ package com.litian.web.blog.controller;
 import com.litian.utils.MD5;
 import com.litian.utils.RC4;
 import com.litian.web.blog.constant.WebConstant;
-import com.litian.web.blog.entity.ArticleBean;
 import com.litian.web.blog.entity.MemberBean;
 import com.litian.web.blog.service.i.IArticleService;
+import com.litian.web.blog.service.i.IMemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.litian.web.blog.service.i.IMemberService;
-
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -30,6 +26,7 @@ public class MemberController {
 
     /**
      * 进入注册页面
+     *
      * @param request
      * @return
      */
@@ -51,6 +48,7 @@ public class MemberController {
     /**
      * 注册并返回结果
      * TODO 注册页面添加ajax验证功能，提升用户体验
+     *
      * @param request
      * @return
      */
@@ -77,6 +75,7 @@ public class MemberController {
 
     /**
      * 进入登录页面
+     *
      * @param request
      * @return
      */
@@ -96,6 +95,7 @@ public class MemberController {
 
     /**
      * 退出登录
+     *
      * @param request
      * @return
      */
@@ -109,6 +109,7 @@ public class MemberController {
 
     /**
      * ajax登录验证
+     *
      * @param request
      * @return
      */
@@ -141,12 +142,15 @@ public class MemberController {
 
     /**
      * 进入首页
+     *
      * @return
      */
     @RequestMapping("/index")
-    public String index(){
-        return "member/index";
+    public ModelAndView index() {
+        ModelAndView mav = new ModelAndView("member/index");
+        return mav;
     }
+
 
     private boolean verify(String username, String password, String enPassword) {
         if (username == null || password == null || enPassword == null) return false;

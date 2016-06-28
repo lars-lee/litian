@@ -13,33 +13,22 @@
 
 <div class="container">
     <div class="blog-header">
-        <h1 class="blog-title">我的昵称</h1>
-        <p class="lead blog-description">这个人很很懒，还没有介绍...</p>
+        <h1 class="blog-title"></h1>
+        <p class="lead blog-description"></p>
     </div>
 
     <div class="row">
-        <div class="col-sm-8 blog-main">
-        <#list articles as article>
-            <div class="blog-post">
-                <h2 class="blog-post-title">
-                    <a class="blog-post-title"
-                       href="${contextPath}/article/detail/${article.id}">${article.title?default("")?html}</a>
-                </h2>
-                <p class="blog-post-meta">${(article.cdate?string("yyyy-MM-dd"))!}</p>
-                <p>${article.fastInfo}</p>
-                <hr>
+        <div id="blog-main" class="col-sm-8 blog-main">
+            <div id="list">
+            <#include "/site/article/articleList.ftl"/>
             </div>
-        </#list>
-
             <nav>
                 <ul class="pager">
-                    <li><a href="#">上一页</a></li>
-                    <li><a href="#">下一页</a></li>
+                    <li><a id="backPage" href="#">上一页</a></li>
+                    <li><a id="nextPage" href="#">下一页</a></li>
                 </ul>
             </nav>
-
-        </div><!-- /.blog-main -->
-
+        </div>
         <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
             <div class="sidebar-module sidebar-module-inset">
                 <h4>介绍</h4>
@@ -48,16 +37,11 @@
             <div class="sidebar-module">
                 <h4>Archives</h4>
                 <ol class="list-unstyled">
-                    <li><a href="#">2016-06</a></li>
-                    <li><a href="#">2016-05</a></li>
-                    <li><a href="#">2016-04</a></li>
-                    <li><a href="#">2016-03</a></li>
-                    <li><a href="#">2016-02</a></li>
-                    <li><a href="#">2016-01</a></li>
-                    <li><a href="#">2015-12</a></li>
-                    <li><a href="#">2015-11</a></li>
-                    <li><a href="#">2015-10</a></li>
-                    <li><a href="#">2015-09</a></li>
+                <#if queryDates??&&queryDates?has_content>
+                    <#list queryDates as queryDate>
+                        <li><a href="#">${queryDate}</a></li>
+                    </#list>
+                </#if>
                 </ol>
             </div>
             <div class="sidebar-module">
@@ -76,5 +60,24 @@
 
 <script src="${contextPath}/js/common/jquery/jquery.min.js"></script>
 <script src="${contextPath}/js/common/bootstrap/bootstrap.min.js"></script>
+<script>
+    $(function () {
+        var pageIndex = 1;
+        $("#backPage").click(function () {
+            if ((--pageIndex) < 1)pageIndex = 1;
+            getArticles(pageIndex, 5)
+        });
+        $("#nextPage").click(function () {
+            ++pageIndex;
+            getArticles(pageIndex, 5)
+        });
+
+        function getArticles(pageIndex, pageSize) {
+            $.post(contextPath + "/getArticles", {pageIndex: pageIndex, pageSize: pageSize}, function (data) {
+                $("#list").html(data);
+            });
+        }
+    });
+</script>
 </body>
 </html>

@@ -7,21 +7,22 @@
         <selectKey order="BEFORE" keyProperty="id" resultType="Long">
             SELECT MEMBER_SEQ_ID.NEXTVAL FROM DUAL
         </selectKey>
-        insert into MEMBER (ID, NAME, PASSWORD, MAIL, PHONE, STATUS)
+        insert into MEMBER (ID, NAME, PASSWORD, MAIL, PHONE, STATUS, INFO)
         values (#{id,jdbcType=DECIMAL}, #{name,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
-        #{mail,jdbcType=VARCHAR}, #{phone,jdbcType=DECIMAL}, #{status,jdbcType=DECIMAL}
+        #{mail,jdbcType=VARCHAR}, #{phone,jdbcType=DECIMAL}, #{status,jdbcType=DECIMAL},
+        #{info, jdbcType=VARCHAR}
         )
     </insert>
     <!-- 根据ID查询用户信息 -->
-    <select id="queryMemberById" resultType="MemberBean">
+    <select id="queryMemberById" resultMap="rs_MemberBean">
         SELECT
         <include refid="columns"/>
         FROM
         MEMBER
         WHERE
-        ID = #{0}
+        ID = #{0,jdbcType=DECIMAL}
     </select>
-    <select id="queryMemberByPhone" resultType="MemberBean">
+    <select id="queryMemberByPhone" resultMap="rs_MemberBean">
         SELECT
         <include refid="columns"/>
         FROM
@@ -29,7 +30,7 @@
         WHERE
         phone = #{0}
     </select>
-    <select id="queryMemberByMail" resultType="MemberBean">
+    <select id="queryMemberByMail" resultMap="rs_MemberBean">
         SELECT
         <include refid="columns"/>
         FROM
@@ -37,7 +38,7 @@
         WHERE
         mail = #{0}
     </select>
-    <select id="queryMemberByName" resultType="MemberBean">
+    <select id="queryMemberByName" resultMap="rs_MemberBean">
         SELECT
         <include refid="columns"/>
         FROM
@@ -51,6 +52,16 @@
     PASSWORD,
     MAIL,
     PHONE,
-    STATUS
+    STATUS,
+    INFO
   </sql>
+    <resultMap id="rs_MemberBean" type="MemberBean">
+        <id column="ID" property="id"/>
+        <result column="NAME" property="name"/>
+        <result column="PASSWORD" property="password"/>
+        <result column="MAIL" property="mail"/>
+        <result column="PHONE" property="phone"/>
+        <result column="STATUS" property="status"/>
+        <result column="INFO" property="info"/>
+    </resultMap>
 </mapper>

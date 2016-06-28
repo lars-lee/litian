@@ -21,6 +21,11 @@ public class MemberService implements IMemberService {
     }
 
     @Override
+    public MemberBean getMemberById(Long id) {
+        return memberMapper.queryMemberById(id);
+    }
+
+    @Override
     public MemberBean getMemberByPhone(Long phone) {
         return memberMapper.queryMemberByPhone(phone);
     }

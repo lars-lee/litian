@@ -2,83 +2,95 @@ package com.litian.web.blog.entity;
 
 public class MemberBean {
 
-	private Long id;
+    private Long id;
 
-	private String name;
+    private String name;
 
-	private String password;
+    private String password;
 
-	private String mail;
+    private String mail;
 
-	private Long phone;
+    private Long phone;
 
-	private Integer status;
+    private Integer status;
 
-	public Long getId() {
-		return id;
-	}
+    private String info;
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public String getPassword() {
-		return password;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    public String getPassword() {
+        return password;
+    }
 
-	public String getMail() {
-		return mail;
-	}
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-	public void setMail(String mail) {
-		this.mail = mail;
-	}
+    public String getMail() {
+        return mail;
+    }
 
-	public Long getPhone() {
-		return phone;
-	}
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
 
-	public void setPhone(Long phone) {
-		this.phone = phone;
-	}
+    public Long getPhone() {
+        return phone;
+    }
 
-	public Integer getStatus() {
-		return status;
-	}
+    public void setPhone(Long phone) {
+        this.phone = phone;
+    }
 
-	public void setStatus(Integer status) {
-		this.status = status;
-	}
+    public Integer getStatus() {
+        return status;
+    }
 
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("MemberBean [id=");
-		builder.append(id);
-		builder.append(", name=");
-		builder.append(name);
-		builder.append(", password=");
-		builder.append(password);
-		builder.append(", mail=");
-		builder.append(mail);
-		builder.append(", phone=");
-		builder.append(phone);
-		builder.append(", status=");
-		builder.append(status);
-		builder.append("]");
-		return builder.toString();
-	}
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public String getInfo() {
+        return info;
+    }
+
+    public void setInfo(String info) {
+        this.info = info;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("MemberBean [id=");
+        builder.append(id);
+        builder.append(", name=");
+        builder.append(name);
+        builder.append(", password=");
+        builder.append(password);
+        builder.append(", mail=");
+        builder.append(mail);
+        builder.append(", phone=");
+        builder.append(phone);
+        builder.append(", status=");
+        builder.append(status);
+        builder.append(", info=");
+        builder.append(info);
+        builder.append("]");
+        return builder.toString();
+    }
 
 }
