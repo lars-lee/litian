@@ -48,4 +48,16 @@ public class ArticleService implements IArticleService {
         map.put("mid", mid);
         return articleMapper.queryArticles(map);
     }
+
+    @Override
+    public List<ArticleBean> getArticlesByCondition(Long mid, String queryDate, int index, int size) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        int end = index * size;
+        int start = end - size;
+        map.put("start", start);
+        map.put("end", end);
+        map.put("mid", mid);
+        map.put("queryDate", queryDate);
+        return articleMapper.queryArticles(map);
+    }
 }

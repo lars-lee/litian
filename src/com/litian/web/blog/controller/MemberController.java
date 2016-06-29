@@ -21,8 +21,6 @@ public class MemberController {
 
     @Autowired
     private IMemberService memberService;
-    @Autowired
-    private IArticleService articleService;
 
     /**
      * 进入注册页面

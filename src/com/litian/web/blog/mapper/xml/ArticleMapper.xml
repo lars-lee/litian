@@ -30,8 +30,9 @@
         FROM ARTICLE
         <where>
             <if test="mid != null">MID = #{mid}</if>
+            <if test="queryDate != null">to_char(cdate,'yyyy - MM') = #{queryDate}</if>
         </where>
-        ORDER BY ID DESC
+        ORDER BY CDATE DESC, ID DESC
         )
         <where>
             <if test="end != null">ROWNUM &lt;= #{end}</if>

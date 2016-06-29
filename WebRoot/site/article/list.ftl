@@ -20,7 +20,19 @@
     <div class="row">
         <div id="blog-main" class="col-sm-8 blog-main">
             <div id="list">
-            <#include "/site/article/articleList.ftl"/>
+            <#if articles??&&articles?has_content>
+                <#list articles as article>
+                    <div class="blog-post">
+                        <h2 class="blog-post-title">
+                            <a class="blog-post-title"
+                               href="${contextPath}/article/detail/${article.id}">${article.title?default("")?html}</a>
+                        </h2>
+                        <p class="blog-post-meta">${(article.cDate?string("yyyy-MM-dd"))!}</p>
+                        <p>${article.fastInfo}</p>
+                        <hr>
+                    </div>
+                </#list>
+            </#if>
             </div>
             <nav>
                 <ul class="pager">
@@ -39,7 +51,7 @@
                 <ol class="list-unstyled">
                 <#if queryDates??&&queryDates?has_content>
                     <#list queryDates as queryDate>
-                        <li><a href="#">${queryDate}</a></li>
+                        <li><a href="#" class="queryDate">${queryDate}</a></li>
                     </#list>
                 </#if>
                 </ol>
@@ -60,24 +72,6 @@
 
 <script src="${contextPath}/js/common/jquery/jquery.min.js"></script>
 <script src="${contextPath}/js/common/bootstrap/bootstrap.min.js"></script>
-<script>
-    $(function () {
-        var pageIndex = 1;
-        $("#backPage").click(function () {
-            if ((--pageIndex) < 1)pageIndex = 1;
-            getArticles(pageIndex, 5)
-        });
-        $("#nextPage").click(function () {
-            ++pageIndex;
-            getArticles(pageIndex, 5)
-        });
-
-        function getArticles(pageIndex, pageSize) {
-            $.post(contextPath + "/getArticles", {pageIndex: pageIndex, pageSize: pageSize}, function (data) {
-                $("#list").html(data);
-            });
-        }
-    });
-</script>
+<script src="${contextPath}/js/article/list.js"></script>
 </body>
 </html>

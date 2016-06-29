@@ -13,4 +13,6 @@ public interface IArticleService {
     List<ArticleBean> getArticles(int index, int size);
 
     List<ArticleBean> getArticlesById(Long id, int index, int size);
+
+    List<ArticleBean> getArticlesByCondition(Long mid, String queryDate, int index, int size);
 }
